@@ -1,0 +1,13 @@
+{% import "bootstrap/utils.html" as utils %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% extends "base.html" %}
+{% block title %}Register{% endblock %}
+{% block body %}
+<div class="content-section">
+  <div class="center">
+    <h1>Register for an account</h1>
+    <br/>
+    {{ wtf.quick_form(form) }}
+  </div>
+</div>
+{% endblock %}
