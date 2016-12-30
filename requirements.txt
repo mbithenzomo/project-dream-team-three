@@ -9,6 +9,7 @@ Flask-Script==2.0.5
 Flask-SQLAlchemy==2.1
 Flask-Testing==0.6.1
 Flask-WTF==0.13.1
+gunicorn==19.6.0
 itsdangerous==0.24
 Jinja2==2.8
 Mako==1.0.6
