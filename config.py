@@ -27,7 +27,7 @@ class TestingConfig(Config):
     Testing configurations
     """
 
-    Testing = True
+    TESTING = True
 
 app_config = {
     'development': DevelopmentConfig,
