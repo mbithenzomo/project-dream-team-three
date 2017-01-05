@@ -13,8 +13,12 @@ class TestBase(TestCase):
     def create_app(self):
 
         # pass in test configuration
-        config_name = os.getenv('FLASK_CONFIG')
-        return create_app(config_name)
+        config_name = 'testing'
+        app = create_app(config_name)
+        app.config.update(
+            SQLALCHEMY_DATABASE_URI='mysql://dt_admin:dt2016@localhost/dreamteam_test'
+        )
+        return app
 
     def setUp(self):
         """
