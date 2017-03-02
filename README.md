@@ -23,17 +23,29 @@ Install the required packages:
 pip install -r requirements.txt
 ```
 
+## Database configuration
+You will need to create a MySQL user your terminal, as well as a MySQL database. Then, grant all privileges on your database to your user, like so:
+
+```
+$ mysql -u root
+
+mysql> CREATE USER 'dt_admin'@'localhost' IDENTIFIED BY 'dt2016';
+
+mysql> CREATE DATABASE dreamteam_db;
+
+mysql> GRANT ALL PRIVILEGES ON dreamteam_db . * TO 'dt_admin'@'localhost';
+```
+
+Note that `dt_admin` is the database user and `dt2016` is the user password. After creating the database, run migrations as follows:
+
+* `flask db migrate`
+* `flask db upgrade`
+
 ## instance/config.py file
 Create a directory, `instance`, and in it create a `config.py` file. This file should contain configuration variables that should not be publicly shared, such as passwords and secret keys. The app requires you to have the following configuration
 variables:
 * SECRET_KEY
-* SQLALCHEMY_DATABASE_URI
-
-## Database configuration
-You will need to create a database, after which you can run migrations as follows:
-
-* `flask db migrate`
-* `flask db upgrade`
+* SQLALCHEMY_DATABASE_URI (`'mysql://dt_admin:dt2016@localhost/dreamteam_db'`)
 
 ## Launching the Program
 Set the FLASK_APP and FLASK_CONFIG variables as follows:
@@ -44,6 +56,16 @@ Set the FLASK_APP and FLASK_CONFIG variables as follows:
 You can now run the app with the following command: `flask run`
 
 ## Testing
+First, create a test database and grant all privileges on your test database to your user:
+
+```
+$ mysql -u root
+
+mysql> CREATE DATABASE dreamteam_test;
+
+mysql> GRANT ALL PRIVILEGES ON dreamteam_test . * TO 'dt_admin'@'localhost';
+```
+
 To test, run the following command: `python tests.py`
 
 ## Built With...
